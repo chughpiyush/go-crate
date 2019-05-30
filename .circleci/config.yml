@@ -9,13 +9,11 @@ jobs:
     steps:
       - setup_remote_docker:
       - run:
+         environment:
+           CRATE_URL: "http://localhost:4200/"
          command: |
            docker pull crate
            docker run -p=4200:4200 -d=true crate
-           sleep 30
-      - run:
-         command: |
-           echo 'export CRATE_URL="http://localhost:4200/"'
 
       - checkout
       - run:
