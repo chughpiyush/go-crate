@@ -19,6 +19,6 @@ jobs:
 
       - checkout
       - run:
-            command: dockerize -wait tcp://localhost:5432 -timeout 1m
+            command: dockerize -wait tcp://localhost:4200 -timeout 1m
       - run: go get -v -t -d ./...
       - run: go test -v ./...
