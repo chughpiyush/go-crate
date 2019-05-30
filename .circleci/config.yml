@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.12.5
+
+    working_directory: /go/src/github.com/chughpiyush/go-crate
+
+    steps:
+      - run:
+          command: |
+            echo 'export CRATE_URL="http://localhost:4200/"'
+
+      - run: docker pull crate && docker run -p=4200:4200 -d=true crate && sleep 10
+
+      - checkout
+
+      - run: go get -v -t -d ./...
+      - run: go test -v ./...
