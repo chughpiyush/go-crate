@@ -3,7 +3,7 @@ package crate_test
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/herenow/go-crate"
+	_ "github.com/chughpiyush/go-crate"
 	"log"
 )
 

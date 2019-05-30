@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"encoding/hex"
 	"fmt"
-	_ "github.com/herenow/go-crate"
+	_ "github.com/chughpiyush/go-crate"
 	"io"
 	"net/http"
 	"time"
