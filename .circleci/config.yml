@@ -8,11 +8,16 @@ jobs:
 
     environment:
       CRATE_URL: "http://localhost:4200/"
+      JAVA_HOME: "/usr/lib/jvm/java-11-openjdk"
 
     steps:
       - checkout
       - run:
          command: |
+           sudo apt-get update
+           sudo apt install openjdk-11-jdk
+
+
            wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz
            mkdir crate
            tar -xzvf crate-3.3.3.tar.gz -C ./crate
