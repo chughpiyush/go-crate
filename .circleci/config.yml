@@ -4,17 +4,23 @@ jobs:
     docker:
       - image: circleci/golang:1.12.5
 
-
     working_directory: /go/src/github.com/chughpiyush/go-crate
 
-    steps:
-      - run:
-         environment:
-           CRATE_URL: "http://localhost:4200/"
-         command: |
-           wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz && mkdir crate && tar -xzvf crate-3.3.3.tar.gz -C ./crate && mv -v ./crate/crate-3.3.3/* ./crate && rm -r ./crate/crate-3.3.3 && ./crate/bin/crate &
+    environment:
+      CRATE_URL: "http://localhost:4200/"
 
+    steps:
       - checkout
+      - run:
+         command: |
+           wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz
+           mkdir crate
+           tar -xzvf crate-3.3.3.tar.gz -C ./crate
+           mv -v ./crate/crate-3.3.3/* ./crate
+           rm -r ./crate/crate-3.3.3
+           ./crate/bin/crate
+           sleep 30
+
       - run:
             command: dockerize -wait tcp://localhost:4200 -timeout 1m
       - run: go get -v -t -d ./...
