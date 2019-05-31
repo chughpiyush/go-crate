@@ -14,12 +14,12 @@ jobs:
       - run:
          command: |
            sudo apt-get install default-jdk
-           wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz
-           mkdir crate
-           tar -xzvf crate-3.3.3.tar.gz -C ./crate
-           mv -v ./crate/crate-3.3.3/* ./crate
-           rm -r ./crate/crate-3.3.3
-           ./crate/bin/crate &
+           mkdir ~/crate
+           wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz ~/crate
+           tar -xzvf ~/crate/crate-3.3.3.tar.gz -C ~/crate
+           mv -v ~/crate/crate-3.3.3/* ./crate
+           rm -r ~/crate/crate-3.3.3
+           ~/crate/bin/crate &
            sleep 30
       - checkout
       - run: go get -v -t -d ./...
