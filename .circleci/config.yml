@@ -11,6 +11,7 @@ jobs:
       JAVA_HOME: "/usr/lib/jvm/java-11-openjdk"
 
     steps:
+      - checkout
       - run:
          command: |
            sudo apt-get install default-jdk
@@ -21,6 +22,6 @@ jobs:
            rm -r ~/crate/crate-3.3.3
            ~/crate/bin/crate &
            sleep 30
-      - checkout
+
       - run: go get -v -t -d ./...
       - run: go test -v ./...
