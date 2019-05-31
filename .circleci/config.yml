@@ -14,7 +14,6 @@ jobs:
       - checkout
       - run:
          command: |
-           sudo apt-get update
            sudo apt-get install default-jdk
            wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz
            mkdir crate
@@ -22,7 +21,6 @@ jobs:
            mv -v ./crate/crate-3.3.3/* ./crate
            rm -r ./crate/crate-3.3.3
            ./crate/bin/crate
-           sleep 30
 
       - run:
             command: dockerize -wait tcp://localhost:4200 -timeout 1m
