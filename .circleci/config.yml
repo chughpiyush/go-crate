@@ -20,7 +20,7 @@ jobs:
            tar -xzvf crate-3.3.3.tar.gz -C ./crate
            mv -v ./crate/crate-3.3.3/* ./crate
            rm -r ./crate/crate-3.3.3
-           ./crate/bin/crate
+           ./crate/bin/crate &
 
       - run:
             command: dockerize -wait tcp://localhost:4200 -timeout 1m
