@@ -3,8 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/golang:1.12.5
-      - image: crate:latest
-        command: docker run -p=4200:4200 -d=true crate
+
 
     working_directory: /go/src/github.com/chughpiyush/go-crate
 
@@ -12,6 +11,8 @@ jobs:
       - run:
          environment:
            CRATE_URL: "http://localhost:4200/"
+         command: |
+           wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz && mkdir crate && tar -xzvf crate-3.3.3.tar.gz -C ./crate && mv -v ./crate/crate-3.3.3/* ./crate && rm -r ./crate/crate-3.3.3 && ./crate/bin/crate &
 
       - checkout
       - run:
