@@ -17,7 +17,7 @@ jobs:
            mkdir ~/crate
            wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz -P ~/crate
            tar -xzvf ~/crate/crate-3.3.3.tar.gz -C ~/crate
-           mv -v ~/crate/crate-3.3.3/* ./crate
+           mv -v ~/crate/crate-3.3.3/* ~/crate
            rm -r ~/crate/crate-3.3.3
            ~/crate/bin/crate &
            sleep 30
