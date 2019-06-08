@@ -14,7 +14,6 @@ jobs:
                rm -r ~/crate/crate-3.3.3
   test:
     machine: true
-    working_directory: /go/src/github.com/chughpiyush/go-crate
     environment:
       CRATE_URL: "http://localhost:4200/"
       JAVA_HOME: "/usr/lib/jvm/java-11-openjdk"
