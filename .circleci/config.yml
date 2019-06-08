@@ -7,16 +7,16 @@ jobs:
       - run:
         command: |
                sudo apt-get install default-jdk
-               mkdir $HOME/crate
-               wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz -P $HOME/crate
-               tar -xzvf $HOME/crate/crate-3.3.3.tar.gz -C $HOME/crate
-               mv -v $HOME/crate/crate-3.3.3/* ~/crate
-               rm -r $HOME/crate/crate-3.3.3
+               mkdir ~/crate
+               wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz -P ~/crate
+               tar -xzvf ~/crate/crate-3.3.3.tar.gz -C ~/crate
+               mv -v ~/crate/crate-3.3.3/* ~/crate
+               rm -r ~/crate/crate-3.3.3
   test:
     steps:
       - checkout
       - run: go get -v -t -d ./...
-      - run: $HOME/crate/bin/crate && disown -a && sleep 30 && go test -v ./...
+      - run: ~/crate/bin/crate && disown -a && sleep 30 && go test -v ./...
 
 workflows:
   version: 2
