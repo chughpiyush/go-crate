@@ -8,7 +8,7 @@ jobs:
       JAVA_HOME: "/usr/lib/jvm/java-11-openjdk"
     steps:
       - run:
-         command: |
+          command: |
                sudo apt-get install default-jdk
                mkdir ~/crate
                wget -c https://cdn.crate.io/downloads/releases/crate-3.3.3.tar.gz -P ~/crate
