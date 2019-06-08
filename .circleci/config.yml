@@ -27,9 +27,7 @@
 #        sleep 30
 #        go test -v ./...
 
-
-
-version: 2.1
+version: 2
 jobs:
   build:
     docker:
