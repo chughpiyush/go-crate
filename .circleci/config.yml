@@ -3,6 +3,9 @@ jobs:
   build:
     docker:
       - image: circleci/golang:1.12.5
+    environment:
+      CRATE_URL: "http://localhost:4200/"
+      JAVA_HOME: "/usr/lib/jvm/java-11-openjdk"
     steps:
       - run:
         command: |
@@ -12,19 +15,13 @@ jobs:
                tar -xzvf ~/crate/crate-3.3.3.tar.gz -C ~/crate
                mv -v ~/crate/crate-3.3.3/* ~/crate
                rm -r ~/crate/crate-3.3.3
-  test:
-    machine: true
-    environment:
-      CRATE_URL: "http://localhost:4200/"
-      JAVA_HOME: "/usr/lib/jvm/java-11-openjdk"
-    steps:
       - checkout
-      - run: go get -v -t -d ./...
-      - run: ~/crate/bin/crate && disown -a && sleep 30 && go test -v ./...
+      - run:
+          - run: go get -v -t -d ./...
+          - run: ~/crate/bin/crate && disown -a && sleep 30 && go test -v ./...
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
-      - test
