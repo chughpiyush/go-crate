@@ -13,6 +13,10 @@ jobs:
                mv -v ~/crate/crate-3.3.3/* ~/crate
                rm -r ~/crate/crate-3.3.3
   test:
+    working_directory: /go/src/github.com/chughpiyush/go-crate
+    environment:
+      CRATE_URL: "http://localhost:4200/"
+      JAVA_HOME: "/usr/lib/jvm/java-11-openjdk"
     steps:
       - checkout
       - run: go get -v -t -d ./...
@@ -20,10 +24,6 @@ jobs:
 
 workflows:
   version: 2
-  working_directory: /go/src/github.com/chughpiyush/go-crate
-  environment:
-    CRATE_URL: "http://localhost:4200/"
-    JAVA_HOME: "/usr/lib/jvm/java-11-openjdk"
   build_and_test:
     jobs:
       - build
