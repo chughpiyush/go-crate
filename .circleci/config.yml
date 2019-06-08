@@ -21,7 +21,12 @@ jobs:
             mv -v ~/crate/crate-3.3.3/* ~/crate
             rm -r ~/crate/crate-3.3.3
       - run: go get -v -t -d ./...
-      - run: ~/crate/bin/crate & disown -a && sleep 30 && go test -v -race ./...
+      - run:
+          command: |
+            set -e
+            ~/crate/bin/crate & disown -a
+            sleep 25
+            go test -v -race ./...
 
 workflows:
   version: 2
