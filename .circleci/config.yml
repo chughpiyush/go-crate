@@ -25,7 +25,6 @@ jobs:
           command: |
             set -e
             ~/crate/bin/crate & disown -a
-            sleep 5
             go test -v -race ./...
 
 workflows:
